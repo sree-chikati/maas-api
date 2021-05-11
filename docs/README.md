@@ -58,6 +58,7 @@ Character valid routes:
 
 ## How to get started
 > This will all be done through using ```Postman```
+<br>
 1. Create 2 users using <b>POST ```/users```</b> :
 ```
 {
@@ -71,8 +72,12 @@ Character valid routes:
     "password": "user2Password"
 }
 ```
-    * Go to <b>GET ```/users```</b> to make sure users are created
+
+ * Go to <b>GET ```/users```</b> to make sure users are created
+
 > Copy user1's user.Id from and save somewhere
+
+<br>
 
 2. Create a character using <b>POST ```/characters``` :</b>
 ```
@@ -86,17 +91,24 @@ Character valid routes:
     "author": "Copy-Paste user1's saved User.Id",
 }
 ```
-    * Go to <b>GET ```/characters```</b> to make sure character is created
+
+ * Go to <b>GET ```/characters```</b> to make sure character is created
+
+<br>
+
 3. Change the the username of ```user2``` using <b>PUT ```/users/{user2.ID}```</b>
 ```
 {
     "username": "testName"
 }
 ```
-    * Go to <b>GET ```/users/{user2.ID}```</b> to make sure username is updated
+
+ * Go to <b>GET ```/users/{user2.ID}```</b> to make sure username is updated
+
+<br>
 
 4. Let's Delete ```testName``` since we are not using it using <b>DELETE ```/users/{testName.ID}```</b>
-    * Go to <b>GET ```/users```</b> to make sure it's deleted
+ * Go to <b>GET ```/users```</b> to make sure it's deleted
 
 <br>
 You can now experiment by creating, reading, updating, and deleting other users and characters too!
