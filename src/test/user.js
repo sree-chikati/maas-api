@@ -80,7 +80,9 @@ describe('User API endpoints', () => {
         .post('/users')
         .send({username: 'user1', password: 'mypassword'})
         .end((err, res) => {
-            if (err) { done(err) }
+            if (err) {
+                done(err) 
+            }
             expect(res.body.user).to.be.an('object')
             expect(res.body.user).to.have.property('username', 'user1')
 
