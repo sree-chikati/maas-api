@@ -46,7 +46,7 @@ User valid routes:
     * <b><i>NOTE:</i></b> Replace {user:id} with valid ID from the databse
 * <b>POST ```/users```</b> : Creates/posts new user in the database
 * <b>PUT ```/users/{user:id}```</b> : Updates info on user with specified ID and User Object
-* <b>DELETE </b>```/users/{user:id}```</b> : Deleted info on user with specified ID and User Object
+* <b>DELETE ```/users/{user:id}```</b> : Deleted info on user with specified ID and User Object
 
 Character valid routes:
 * <b>GET ```/characters```</b> : Gets a list of all the characters
