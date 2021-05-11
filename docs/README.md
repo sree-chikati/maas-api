@@ -46,19 +46,19 @@
 ## Endpoints
 Character valid routes:
 * <b>GET</b>```/characters``` : Gets a list of all the characters
-* <b>GET</b> ```/character/{character:id}``` : Gets info on character with specified ID
+* <b>GET</b> ```/characters/{character:id}``` : Gets info on character with specified ID
     * <b><i>NOTE:</i></b> Replace {character:id} with valid ID from the databse
 * <b>POST</b>```/characters``` : Creates/posts new character in the database
-* <b>PUT</b>```/character/{character:id}``` : Updates info on chracter with specified ID and Character Object
-* <b>DELETE</b>```/character/{character:id}``` : Deleted info on chracter with specified ID and Character Object
+* <b>PUT</b>```/characters/{character:id}``` : Updates info on chracter with specified ID and Character Object
+* <b>DELETE</b>```/characters/{character:id}``` : Deleted info on chracter with specified ID and Character Object
 
 User valid routes: 
 * <b>GET</b>```/users``` : Gets a list of all the users
-* <b>GET</b> ```/user/{user:id}``` : Gets info on user with specified ID
+* <b>GET</b> ```/users/{user:id}``` : Gets info on user with specified ID
     * <b><i>NOTE:</i></b> Replace {user:id} with valid ID from the databse
 * <b>POST</b>```/users``` : Creates/posts new user in the database
-* <b>PUT</b>```/user/{user:id}``` : Updates info on user with specified ID and User Object
-* <b>DELETE</b>```/user/{user:id}``` : Deleted info on user with specified ID and User Object
+* <b>PUT</b>```/users/{user:id}``` : Updates info on user with specified ID and User Object
+* <b>DELETE</b>```/users/{user:id}``` : Deleted info on user with specified ID and User Object
 
 
 ## Examples
