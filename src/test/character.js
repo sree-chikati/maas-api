@@ -6,9 +6,11 @@ const app = require('../server.js')
 const expect = chai.expect
 const should = chai.should()
 chai.use(chaiHttp)
-
-// Assert
 const assert = chai.assert
+
+
+chai.config.includeStack = true
+
 
 // Model Imports
 const Character = require('../models/character.js');
@@ -31,10 +33,10 @@ describe('character API endpoints', () => {
         const newCharacter = new Character({
             name: 'Mel',
             book: 'Throne of Glass',
-            age: '21',
+            age: '18',
             species: 'Human',
-            powers: 'Animal Taming',
-            summary: 'Character that does not exist in the book'
+            powers: 'Shadowfire',
+            summary: 'Blew up the Valg Base and helped Elide'
         })
     
         const user = new User({
@@ -42,7 +44,7 @@ describe('character API endpoints', () => {
             password: 'passtest'
         })
 
-        sampleUser.save()
+        user.save()
         .then( () => {
             newCharacter.author = user
             return newCharacter.save()
@@ -86,7 +88,7 @@ describe('character API endpoints', () => {
         Character.findOne({name: 'Mel'})
         .then(character => {
             chai.request(app)
-            .get(`/character/${character._id}`)
+            .get(`/characters/${character._id}`)
             .end( (err, res) => {
                 if (err) {
                     done(err)
@@ -94,7 +96,7 @@ describe('character API endpoints', () => {
                 else {
                     expect(res).to.have.status(200)
                     expect(res.body).to.be.an('object')
-                    expect(res.body.name).to.be.deep.equal('Name')
+                    expect(res.body.name).to.be.deep.equal('Mel')
                     expect(res.body.book).to.be.deep.equal('Throne of Glass')
                     done()
                 }
@@ -111,10 +113,11 @@ describe('character API endpoints', () => {
             .send({
                 name: 'Kat',
                 book: 'Throne of Glass',
-                age: '18',
+                age: '21',
                 species: 'Human',
-                powers: 'Shadowfire',
-                summary: 'Blew up the Valg Base and helped Elide'
+                powers: 'Animal Taming',
+                summary: 'Character that does not exist in the book',
+                author: user
             })
             .end( (err, res) => {
                 if (err) {
@@ -123,7 +126,7 @@ describe('character API endpoints', () => {
                 else {
                     expect(res.body.name).to.be.deep.equal('Kat')
                     expect(res.body.book).to.be.deep.equal('Throne of Glass')
-                    expect(res.body.summary).to.be.deep.equal('Blew up the Valg Base and helped Elide')
+                    expect(res.body.summary).to.be.deep.equal('Character that does not exist in the book')
                     expect(res.body.author).to.be.equal(`${user._id}`)
 
                     Character.findOne({name: 'Mel'})
@@ -138,13 +141,11 @@ describe('character API endpoints', () => {
 
     // PUT route: updates character we created
     it('should update a created character', (done) => {
-        Character.findOne({name: 'Kat'})
+        Character.findOne({name: 'Mel'})
         .then( character => {
             chai.request(app)
             .put(`/characters/${character._id}`)
-            .send({
-                name: 'Kaltain'
-            })
+            .send({ name: 'Kaltain'})
             .end( (err, res) => {
                 if (err) { 
                     done(err) 
@@ -152,7 +153,7 @@ describe('character API endpoints', () => {
                 expect(res.body.character.name).to.be.deep.equal('Kaltain')
                 expect(res.body.character).to.have.property('name', 'Kaltain')
 
-                character.findOne({name: 'Kaltain'})
+                Character.findOne({name: 'Kaltain'})
                 .then( (character) => {
                     expect(character.name).to.be.deep.equal('Kaltain')
                     done()
@@ -171,7 +172,7 @@ describe('character API endpoints', () => {
                 if (err) {
                     done(err)
                 }
-                expect(res.body.character).to.be.deep.equal('Character was deleted from db.')
+                expect(res.body.character).to.be.deep.equal('Character was deleted from Database')
                 done()
             })
         })
