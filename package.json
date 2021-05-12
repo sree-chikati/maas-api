@@ -4,7 +4,7 @@
   "description": "BEW Final Custom API Project",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/server.js",
+    "start": "node src/server.js",
     "test": "mocha src/test"
   },
   "author": "Sreenvitha <sree.chikati@gmail.com>",
