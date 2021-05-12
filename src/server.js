@@ -10,16 +10,18 @@ app.use('*/css',express.static('public/css')); // Allows us to use content from 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use((req, res, next) => {
-    const now = new Date().toString()
-    console.log(`Requested ${req.url} at ${now}`)
-    next()
-})
 
 // Middleware
 const exphbs  = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+
+app.use((req, res, next) => {
+    const now = new Date().toString()
+    console.log(`Requested ${req.url} at ${now}`)
+    next()
+})
 
 // Set up database
 require("./data/maas-db.js");
@@ -33,9 +35,12 @@ app.get('/', (req, res) => {
   res.render('home');
 })
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log('Maas API listening on port localhost:3000!');
-})
+app.listen(process.env.PORT, () => {
+  console.log(`Maas API listening on port ${process.env.PORT}`);
+});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log('Maas API listening on port localhost:3000!');
+// })
 
 module.exports = app;
