@@ -22,8 +22,9 @@ require("./data/maas-db.js");
 const router = require("./controllers/index.js");
 app.use(router);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Maas API listening on port ${process.env.PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log('Maas API listening on port localhost:3000!');
+})
 
 module.exports = app;
